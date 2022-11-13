@@ -8,7 +8,7 @@ function Layout({ children }) {
     <>
       <Navbar />
       {children}
-      <WannaSell/>
+      {/* <WannaSell/> */}
       <Footer footerAPI={footerAPI}/>
     </>
   );

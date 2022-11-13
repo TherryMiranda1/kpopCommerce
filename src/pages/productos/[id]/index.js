@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import apiUrl from "next-api-url";
 
-import { AiOutlineHome, AiOutlineMail, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineMail, AiOutlineHeart } from "react-icons/ai";
 import { BiBookmarkMinus, BiShapeSquare } from "react-icons/bi";
 import { FaBed } from "react-icons/fa";
 import Hipotecas from "src/components/Inmuebles/Hipotecas";
@@ -94,31 +94,21 @@ export default function ItemDetail({ error, path }) {
             <h3>{card.accesibilidad}</h3>
             <section className="flex place-content-around gap-6 text-gray-600 font-bold">
               <article className="flex gap-2">
-                <AiOutlineHome size={28} />
                 <p>{card.tipo}</p>
-              </article>
-              <article className="flex gap-2">
-                <FaBed size={28} />
-                <p>{card.habitaciones} hab</p>
-              </article>
-              <article className="flex gap-2">
-                <BiShapeSquare size={28} />
-                <p>{card.superficie} m²</p>
               </article>
             </section>
             <p className="overflow-hidden text-2xl">{card.descripcion}</p>
             <section className="flex place-content-evenly">
               {" "}
-              <button className="bg-red-600 hover:bg-red-700 w-32 text-white font-semibold rounded-xl h-12 gap-2 flex place-content-center items-center">
+              <button className="bg-sky-600 hover:bg-sky-700 w-32 text-white font-semibold rounded-xl h-12 gap-2 flex place-content-center items-center">
                 {" "}
-                <AiOutlineMail size={24} /> Contactar
+                <AiOutlineShoppingCart size={24} /> Comprar
               </button>
-              <button className="text-red-600 hover:text-red-700 w-32  font-semibold rounded-xl h-12 gap-2 flex place-content-center items-center">
+              <button className="text-sky-600 hover:text-sky-700 w-32  font-semibold rounded-xl h-12 gap-2 flex place-content-center items-center">
                 <AiOutlineHeart size={24} /> Favorito
               </button>
             </section>
           </article>
-          <Hipotecas />
         </section>
       )}
     </div>

@@ -1,8 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-
-import { StarIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
-import { setAddItemToCart, setOpenCart } from "../../app/CartSlice";
+import { useRouter } from "next/router";
 
 const CategoryItem = ({
   ifExists,
@@ -18,18 +15,17 @@ const CategoryItem = ({
   price,
 }) => {
   //   console.log(id)
-
-  console.log(color)
+  const { push } = useRouter();
+  console.log(color);
 
   return (
     <>
       <div
-        className={`relative bg-gradient-to-l ${color} ${shadow} flex flex-wrap items-center place-content-around rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-full hover:scale-105`}
+        onClick={() => push(`/${titulo.toLowerCase()}`)}
+        className={` gap-6 relative bg-gradient-to-l from-sky-600 to-indigo-600 shadow-lg cursor-pointer shadow-blue-500 flex flex-wrap items-center place-content-around rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-full hover:scale-105`}
       >
-        <div
-          className={`items-center justify-items-center`}
-        >
-          <h1 className="text-slate-200 text-xl lg:text-lg md:text-base font-bold filter drop-shadow">
+        <div className={`items-center justify-items-center`}>
+          <h1 className="text-slate-200 text-2xl md:text-2xl font-bold filter drop-shadow">
             {titulo}
           </h1>
         </div>
@@ -42,7 +38,7 @@ const CategoryItem = ({
             <img
               src={img}
               alt={`img/item-img/${id}`}
-              className={`transitions-theme hover:-rotate-12 "h-auto w-64 lg:w-56 md:w-48 -rotate-[35deg]`}
+              className={`transitions-theme hover:-rotate-12 "h-auto w-36 lg:w-56 md:w-48 -rotate-[35deg]`}
             />
           )}
           {images && (

@@ -12,9 +12,9 @@ export const CardCard = ({ card }) => {
   const router = useRouter();
   return (
     <section
-    data-aos="flip-left"
-                data-aos-duration="1500"
-      onClick={() => router.push(`/inmuebles/${card._id}`)}
+      data-aos="flip-left"
+      data-aos-duration="1500"
+      onClick={() => router.push(`/productos/${card._id}`)}
       className="m-3 md:w-[80vw] w-[90vw] p-3 rounded-xl shadow-xl shadow-gray-400 cursor-pointer place-content-center md:flex"
     >
       <article className="flex place-content-center flex-1 md:w-1/2">
@@ -56,16 +56,7 @@ export const CardCard = ({ card }) => {
         <h3>{card.accesibilidad}</h3>
         <section className="flex place-content-around gap-6 text-gray-600 font-bold">
           <article className="flex gap-2">
-            <AiOutlineHome size={28} />
             <p>{card.tipo}</p>
-          </article>
-          <article className="flex gap-2">
-            <FaBed size={28} />
-            <p>{card.habitaciones} hab</p>
-          </article>
-          <article className="flex gap-2">
-            <BiShapeSquare size={28} />
-            <p>{card.superficie} m²</p>
           </article>
         </section>
         <p className="overflow-hidden truncate">{card.descripcion} </p>

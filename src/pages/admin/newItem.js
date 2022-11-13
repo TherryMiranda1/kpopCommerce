@@ -259,10 +259,10 @@ function newItem({ cards, card, session, path }) {
           </div>
           <section className="m-6">
             {loading ? (
-              <DotLoader color="#d63636" size={40} className="m-auto" />
+              <DotLoader color="#0EA5E9" size={40} className="m-auto" />
             ) : (
               <button
-                className="bg-red-500 hover:bg-red-700 m-2 p-1 px-2 rounded-md text-white"
+                className="bg-sky-500 hover:bg-sky-700 m-2 p-1 px-2 rounded-md text-white"
                 style={{ boxShadow: "1px 2px 3px gray" }}
               >
                 {query.id ? "Actualizar" : "Guardar"}
@@ -273,7 +273,7 @@ function newItem({ cards, card, session, path }) {
       </article>
       {cards && !query?.id && (
         <section>
-          <h2 className="m-6 text-2xl">Inmuebles</h2>
+          <h2 className="m-6 text-2xl">Productos</h2>
           <div className="flex flex-wrap place-content-center">
             {cards.map((card) => (
               <AdminEditCard card={card} key={card._id} path={path} />

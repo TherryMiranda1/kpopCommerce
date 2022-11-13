@@ -77,7 +77,7 @@ export const AdminEditCard = ({ card, path }) => {
   const router = useRouter();
   return (
     <section
-      onClick={() => router.push(`/inmuebles/${card._id}`)}
+      onClick={() => router.push(`/productos/${card._id}`)}
       className="md:w-[80vw] w-[90vw] p-3 rounded-xl shadow-xl shadow-gray-400 cursor-pointer place-content-center md:flex"
     >
       <article className="flex place-content-center flex-1 md:w-1/2">
@@ -140,16 +140,7 @@ export const AdminEditCard = ({ card, path }) => {
         <h3>{card.accesibilidad}</h3>
         <section className="flex place-content-around gap-6 text-gray-600 font-bold">
           <article className="flex gap-2">
-            <AiOutlineHome size={28} />
             <p>{card.tipo}</p>
-          </article>
-          <article className="flex gap-2">
-            <FaBed size={28} />
-            <p>{card.habitaciones} hab</p>
-          </article>
-          <article className="flex gap-2">
-            <BiShapeSquare size={28} />
-            <p>{card.superficie} m²</p>
           </article>
         </section>
         <p className="overflow-hidden truncate">{card.descripcion} </p>
