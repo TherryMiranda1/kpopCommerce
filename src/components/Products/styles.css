@@ -1,0 +1,32 @@
+.marquee{
+    position: relative;
+  height: 400px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.carrousel {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 20s linear infinite;
+  width: 280%;
+
+}
+
+.carrousel:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
