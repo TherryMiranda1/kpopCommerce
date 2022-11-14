@@ -32,9 +32,10 @@ const youtube = "../assets/youtube.svg";
 const messenger = "../assets/messenger.svg";
 
 const heroapi = {
-  title: "Play With Electric Nike",
-  subtitle: "Adapt 2.0 Sneakers",
+  titulo: "Play With Electric Nike",
+  descripcion: "Adapt 2.0 Sneakers",
   img: heroimg,
+  images: [{ url: heroimg }],
   btntext: "Explore Product",
   videos: [
     { imgsrc: vcover1, clip: clip },
@@ -59,7 +60,7 @@ const categories = {
       text: "MEN Running Shoes",
       rating: "4.9",
       btn: "Buy Now",
-      img:'https://res.cloudinary.com/dzkcloud/image/upload/v1668335281/theQuest/-401393682623499934-removebg-preview_yndqyc.png',
+      img: "https://res.cloudinary.com/dzkcloud/image/upload/v1668335281/theQuest/-401393682623499934-removebg-preview_yndqyc.png",
       price: "200",
       color: "from-sky-600 to-indigo-600",
       shadow: "shadow-lg shadow-blue-500",
@@ -70,7 +71,7 @@ const categories = {
       text: "MEN Running Shoes",
       rating: "4.5",
       btn: "Buy Now",
-      img: 'https://res.cloudinary.com/dzkcloud/image/upload/v1668335294/theQuest/-1778382996-1635428853-removebg-preview_mdtktu.png',
+      img: "https://res.cloudinary.com/dzkcloud/image/upload/v1668335294/theQuest/-1778382996-1635428853-removebg-preview_mdtktu.png",
       price: "200",
       color: "from-gray-900 to-yellow-500",
       shadow: "shadow-lg shadow-yellow-500",
@@ -81,7 +82,7 @@ const categories = {
       text: "MEN Running Shoes",
       rating: "5+",
       btn: "Buy Now",
-      img: 'https://res.cloudinary.com/dzkcloud/image/upload/v1668335268/theQuest/-1106607494-187461914-removebg-preview_ftr3j0.png',
+      img: "https://res.cloudinary.com/dzkcloud/image/upload/v1668335268/theQuest/-1106607494-187461914-removebg-preview_ftr3j0.png",
       price: "200",
       color: "from-red-400 to-rose-600",
       shadow: "shadow-lg shadow-red-500",
@@ -92,7 +93,7 @@ const categories = {
       text: "MEN Running Shoes",
       rating: "5+",
       btn: "Buy Now",
-      img: 'https://res.cloudinary.com/dzkcloud/image/upload/v1668335299/theQuest/-633561043-1671285739-removebg-preview_mzq36n.png',
+      img: "https://res.cloudinary.com/dzkcloud/image/upload/v1668335299/theQuest/-633561043-1671285739-removebg-preview_mzq36n.png",
       price: "200",
       color: "from-slate-700 to-black",
       shadow: "shadow-lg shadow-black",

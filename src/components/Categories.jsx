@@ -3,7 +3,6 @@ import CategoryItem from './utils/CategoryItem'
 import Title from './utils/Title' 
 
 const Categories = ({ ifExists, endpoint }) => {
-   console.log(endpoint)
   return (
    <>
       <div className='nike-container'>

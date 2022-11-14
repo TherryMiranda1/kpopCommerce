@@ -11,11 +11,12 @@ import Hipotecas from "src/components/Inmuebles/Hipotecas";
 import Head from "next/head";
 import { CardCard } from "src/components/CardCard";
 import Item from "src/components/utils/Item";
+import { Hero } from "src/components";
+import { gradientMaker } from "src/lib/helpers";
 
 export default function ItemDetail({ error, path }) {
-  const [selectedImg, setSelectedImg] = useState(0);
+  const [gradient, setGradient] = useState(null);
   const [cards, setCards] = useState(null);
-  const [coords, setCoords] = useState(null);
   const { push, query } = useRouter();
   if (error && error.statusCode)
     return (
@@ -33,7 +34,7 @@ export default function ItemDetail({ error, path }) {
         </button>
       </>
     );
-  console.log(query.categoria);
+  console.log(gradient);
   const getCards = async () => {
     const res = await fetch(`${path}/cards/`);
     const parsedCard = await res.json();
@@ -42,8 +43,10 @@ export default function ItemDetail({ error, path }) {
     });
     if (matchCards.length > 0) {
       setCards(matchCards);
-    } else{
-      push('/')
+      const color = gradientMaker(query.categoria);
+      setGradient(color);
+    } else {
+      push("/");
     }
   };
 
@@ -52,25 +55,25 @@ export default function ItemDetail({ error, path }) {
   }, []);
 
   return (
-    <div className="h-[100vh]">
+    <div className="">
       <Head>
         <title>{cards?.titulo}</title>
         <meta name="viewport" content="width=device-width" initial-scale="1" />
       </Head>
-      <div className="w-full  flex flex-col text-xl font-bold pt-14">
-        {cards != null ? (
-          <section>
-            <h1 className="m-auto text-center first-letter:text-3xl">{query.categoria}</h1>
+      <div className="w-full  flex flex-col text-xl font-bold">
+        {cards != null && gradient ? (
+          <section className="">
+            <Hero heroapi={cards[0]} gradient={gradient} />
+            {/* <h1 className="pt-14 m-auto text-center first-letter:text-3xl">{query.categoria}</h1> */}
             <div
-              className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-7 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 m-10`}
+              className={` pt-20 grid  items-center justify-items-center gap-7 lg:gap-5 mt-7 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 m-10`}
             >
               {cards.map((item, i) => (
-                <Item {...item} key={i} />
+                <Item {...item} key={i} gradient={gradient} />
               ))}
             </div>
           </section>
-        ) : (null
-        )}
+        ) : null}
       </div>
     </div>
   );

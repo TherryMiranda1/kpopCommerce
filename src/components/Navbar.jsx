@@ -7,10 +7,12 @@ import {
   MagnifyingGlassIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router.js";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
   const dispatch = useDispatch();
+  const {push}= useRouter()
   const totalQTY = useSelector(selectTotalQTY);
 
   const onCartToggle = () => {
@@ -47,9 +49,10 @@ const Navbar = () => {
         <nav className="flex items-center justify-between nike-container">
           <div className="flex items-center">
             <img
+            onClick={()=>push('/')}
               src='/logo.png'
               alt="logo/img"
-              className={`w-16 h-auto ${navState && "filter brightness-0"}`}
+              className={`w-16 h-auto cursor-pointer hover:w-20 ${navState && "filter brightness-0"}`}
             />
           </div>
           <ul className="flex items-center justify-center gap-2">

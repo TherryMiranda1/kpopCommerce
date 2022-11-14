@@ -23,10 +23,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import { useCustom } from "src/context/CustomContext";
 
 export default function HomePage({ cards, users, session, path }) {
   const [ready, setReady] = useState(false);
   // if (cards.length === 0) return <NoContentComponent />;
+  const {setPath}= useCustom()
 
   const web = 0;
   console.log(path);
@@ -44,7 +46,7 @@ export default function HomePage({ cards, users, session, path }) {
       <div className="w-full text-md">
         <section>
           <main className="flex flex-col gap-16 relative">
-            <Hero heroapi={heroapi} />
+            <Hero heroapi={heroapi} gradient={'bg-gradient-to-l from-gray-900 to-yellow-500'}/>
             <Sales endpoint={popularsales.items} ifExists />
             <Categories endpoint={categories.items} />
             <FlexContent endpoint={highlight} ifExists />

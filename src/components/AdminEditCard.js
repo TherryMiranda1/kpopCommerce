@@ -119,15 +119,15 @@ export const AdminEditCard = ({ card, path }) => {
           >
             <FaTrashAlt size={24} /> Eliminar
           </button>
-          {/* <button
+          <button
             onClick={(e) => {
               e.stopPropagation();
-              router.push(`/inmuebles/${card._id}/edit`);
+              router.push(`/productos/${card._id}/edit`);
             }}
             className="text-red-600 hover:text-white hover:bg-red-600 w-32  font-semibold rounded-xl h-12 gap-2 flex place-content-center items-center"
           >
             <FaPen size={24} /> Editar
-          </button> */}
+          </button>
         </section>
         <h2 className="text-3xl font-bold">
           {parseInt(card.precio).toLocaleString("es-ES", {

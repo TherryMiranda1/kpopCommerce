@@ -19,10 +19,11 @@ const Item = ({
   _id,
   rating,
   price,
+  gradient
 }) => {
   //   console.log(id)
   const dispatch = useDispatch();
-  const router =useRouter()
+  const router = useRouter();
 
   const onAddToCart = () => {
     const item = { id, descripcion, titulo, images, img, color, shadow, price };
@@ -42,11 +43,11 @@ const Item = ({
     <>
       <div
         onClick={() => router.push(`/productos/${_id}`)}
-        className={`relative bg-gradient-to-l  ${
+        className={`relative  ${
           ifExists
-            ? "from-gray-900 to-yellow-500 shadow-lg shadow-yellow-500 justify-items-start"
-            : "from-slate-700 to-black shadow-lg shadow-black justify-items-center "
-        } rounded-xl m-auto py-4 px-5 transition-all grid items-center duration-700 ease-in-out w-full hover:scale-105`}
+            ? "bg-gradient-to-l from-gray-900 to-yellow-500 shadow-lg shadow-yellow-500 justify-items-start"
+            : "bg-gradient-to-l from-slate-700 to-black shadow-lg shadow-black justify-items-center "
+        } ${gradient} rounded-xl m-auto py-4 px-5 transition-all grid items-center duration-700 ease-in-out w-full hover:scale-105`}
       >
         <div
           className={`grid items-center ${
@@ -93,7 +94,7 @@ const Item = ({
                 onCartToggle();
               }}
             >
-              {btn}
+              {btn || 'Comprar ahora'}
             </button>
           </div>
         </div>
@@ -108,22 +109,22 @@ const Item = ({
               alt={`img/item-img/${id}`}
               className={`transitions-theme hover:-rotate-12 ${
                 ifExists
-                  ? "h-auto w-64 lg:w-56 md:w-48 -rotate-[35deg]"
+                  ? "h-auto w-36  -rotate-[35deg]"
                   : "h-36 w-64"
               }`}
             />
           )}
-          {images && (
+          {images?.length > 0 ? (
             <img
               src={images[0].url}
               alt={`img/item-img/${id}`}
               className={`transitions-theme hover:-rotate-12 ${
                 ifExists
-                  ? "h-auto w-64 lg:w-56 md:w-48 -rotate-[35deg]"
+                  ? "h-auto w-64  -rotate-[35deg]"
                   : "h-46"
               }`}
             />
-          )}
+          ) : null}
         </div>
       </div>
     </>

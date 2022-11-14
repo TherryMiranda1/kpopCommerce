@@ -58,12 +58,10 @@ apiRoute.post(async (req, res) => {
     const {
       titulo,
       descripcion,
-      habitaciones,
       precio,
-      superficie,
-      accesibilidad,
+      rating,
+      existencia,
       tipo,
-      direccion,
       files,
     } = req.body;
     // let files = [];
@@ -80,12 +78,10 @@ apiRoute.post(async (req, res) => {
     const newCard = new Card({
       titulo,
       descripcion,
-      habitaciones,
       precio,
-      superficie,
-      accesibilidad,
       tipo,
-      direccion,
+      existencia,
+      rating,
       images: files,
     });
     const savedCard = await newCard.save();

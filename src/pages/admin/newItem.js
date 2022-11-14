@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
-import { AdminEditCard } from "src/components/AdminEditCard";
+
 import DotLoader from "react-spinners/DotLoader";
 import apiUrl from "next-api-url";
 
@@ -87,19 +87,6 @@ function newItem({ cards, card, session, path }) {
   const handleFileEvent = (e) => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
     handleUploadFiles(chosenFiles);
-  };
-  const uploadToClient = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const errors = {};
-      if (event.target.files[0].type.includes("image")) {
-        const i = event.target.files[0];
-
-        setNewCard({ ...newCard, ["image"]: i });
-        setCreateObjectURL(URL.createObjectURL(i));
-      }
-      errors.image = "Debes seleccionar una imagen valida";
-      return errors;
-    }
   };
 
   // Create Card
@@ -187,10 +174,11 @@ function newItem({ cards, card, session, path }) {
     }
   };
   useEffect(() => {
+    console.log(path);
     if (query.id) {
       getCard();
     }
-  }, [query.id]);
+  }, []);
 
   return (
     <div className="pt-12 font-bold text-md align-end">
@@ -271,16 +259,14 @@ function newItem({ cards, card, session, path }) {
           </section>
         </form>
       </article>
-      {cards && !query?.id && (
-        <section>
-          <h2 className="m-6 text-2xl">Productos</h2>
-          <div className="flex flex-wrap place-content-center">
-            {cards.map((card) => (
-              <AdminEditCard card={card} key={card._id} path={path} />
-            ))}
-          </div>
-        </section>
-      )}
+      <section>
+      <button onClick={() => push('/admin/items')}
+                className="bg-sky-500 hover:bg-sky-700 m-2 p-1 px-2 rounded-md text-white"
+                style={{ boxShadow: "1px 2px 3px gray" }}
+              >
+                Ver Items
+              </button>
+      </section>
     </div>
   );
 }
@@ -288,12 +274,12 @@ function newItem({ cards, card, session, path }) {
 export default newItem;
 
 export const getServerSideProps = async (context) => {
-  const res = await fetch(`${apiUrl(context)}/cards`);
+  const path = apiUrl(context);
+  const res = await fetch(`${path}/cards`);
   const cards = await res.json();
 
   const session = await getSession(context);
-  const path = apiUrl(context);
-  console.log(path);
+  
   return {
     props: {
       cards,

@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import apiUrl from "next-api-url";
 
-import { AiOutlineShoppingCart, AiOutlineMail, AiOutlineHeart } from "react-icons/ai";
+import {
+  AiOutlineShoppingCart,
+  AiOutlineMail,
+  AiOutlineHeart,
+} from "react-icons/ai";
 import { BiBookmarkMinus, BiShapeSquare } from "react-icons/bi";
 import { FaBed } from "react-icons/fa";
 import Hipotecas from "src/components/Inmuebles/Hipotecas";
@@ -54,16 +58,16 @@ export default function ItemDetail({ error, path }) {
         <meta name="viewport" content="width=device-width" initial-scale="1" />
       </Head>
       {card && (
-        <section className="m-3 p-3 rounded-xl shadow-xl shadow-gray-400 cursor-pointer place-content-center ">
+        <section className="m-3 p-3 rounded-xl cursor-pointer place-content-center ">
           <article className="flex place-content-center flex-1 ">
             {card?.images[0] && (
-              <section className="place-content-center flex flex-col gap-5">
+              <section className="place-content-center shadow-xl shadow-gray-400 p-16 rounded-3xl flex flex-col gap-5">
                 <img
                   alt="image"
                   className="rounded-xl lg:w-[35vw] md:w-[50vw] w-[70vw] h-[50vh] object-cover m-auto"
                   src={card.images[selectedImg].url}
                 />
-                <article className="flex place-content-center overflow-x-scroll">
+                <article className="flex  place-content-center overflow-x-scroll">
                   {card.images.map((img, i) => (
                     <img
                       onClick={(e) => {
