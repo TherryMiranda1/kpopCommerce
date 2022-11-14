@@ -1,12 +1,6 @@
 import { getSession, useSession } from "next-auth/react";
 import { CardCard } from "src/components/CardCard";
-import {
-  FlexContent,
-  Hero,
-  Sales,
-  Stories,
-  Categories
-} from "src/components";
+import { FlexContent, Hero, Sales, Stories, Categories } from "src/components";
 import apiUrl from "next-api-url";
 import {
   heroapi,
@@ -28,7 +22,7 @@ import { useCustom } from "src/context/CustomContext";
 export default function HomePage({ cards, users, session, path }) {
   const [ready, setReady] = useState(false);
   // if (cards.length === 0) return <NoContentComponent />;
-  const {setPath}= useCustom()
+  const { setPath } = useCustom();
 
   const web = 0;
   console.log(path);
@@ -45,8 +39,14 @@ export default function HomePage({ cards, users, session, path }) {
       </Head>
       <div className="w-full text-md">
         <section>
-          <main className="flex flex-col gap-16 relative">
-            <Hero heroapi={heroapi} gradient={'bg-gradient-to-l from-gray-900 to-yellow-500'}/>
+          <main className="flex flex-col gap-16 overflow-hidden">
+            <Hero
+              heroapi={heroapi}
+              gradient={"bg-gradient-to-l from-gray-900 to-yellow-500"}
+              gradient2={"bg-gradient-to-l from-green-500 to-emerald-600 shadow-lg shadow-green-500"}
+              gradient3={"bg-gradient-to-l from-blue-900 to-blue-500 shadow-lg shadow-blue-500"}
+              gradient4={"bg-gradient-to-l from-red-400 to-rose-600 shadow-lg shadow-rose-500"}
+            />
             <Sales endpoint={popularsales.items} ifExists />
             <Categories endpoint={categories.items} />
             <FlexContent endpoint={highlight} ifExists />
@@ -55,11 +55,6 @@ export default function HomePage({ cards, users, session, path }) {
             <FlexContent endpoint={sneaker} />
             <Stories story={story} />
           </main>
-          {/* <div className="flex flex-wrap place-content-center">
-            {cards.map((card) => (
-              <CardCard card={card} key={card._id} />
-            ))}
-          </div> */}
         </section>
       </div>
     </article>
