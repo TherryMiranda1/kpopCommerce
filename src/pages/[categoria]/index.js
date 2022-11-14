@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import apiUrl from "next-api-url";
 
-import { AiOutlineHome, AiOutlineMail, AiOutlineHeart } from "react-icons/ai";
-import { BiBookmarkMinus, BiShapeSquare } from "react-icons/bi";
-import { FaBed } from "react-icons/fa";
-import Hipotecas from "src/components/Inmuebles/Hipotecas";
 import Head from "next/head";
-import { CardCard } from "src/components/CardCard";
 import Item from "src/components/utils/Item";
 import { Hero } from "src/components";
 import { gradientMaker } from "src/lib/helpers";

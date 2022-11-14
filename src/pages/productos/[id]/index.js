@@ -9,9 +9,6 @@ import {
   AiOutlineMail,
   AiOutlineHeart,
 } from "react-icons/ai";
-import { BiBookmarkMinus, BiShapeSquare } from "react-icons/bi";
-import { FaBed } from "react-icons/fa";
-import Hipotecas from "src/components/Inmuebles/Hipotecas";
 import Head from "next/head";
 
 export default function ItemDetail({ error, path }) {

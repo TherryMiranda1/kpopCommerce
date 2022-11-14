@@ -1,12 +1,10 @@
 import React from "react";
-import { useCustom } from "../context/CustomContext";
 
 import { getSession } from "next-auth/react";
 import { CardCard } from "src/components/CardCard";
 import apiUrl from "next-api-url";
 
 function ServicesPage({ cards }) {
-  const { productsValues } = useCustom();
   return (
     <div className="w-full text-xl font-bold pt-14">
       <div className="flex flex-wrap place-content-center">
