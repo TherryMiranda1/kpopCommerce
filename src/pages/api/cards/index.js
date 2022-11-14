@@ -64,16 +64,6 @@ apiRoute.post(async (req, res) => {
       tipo,
       files,
     } = req.body;
-    // let files = [];
-    // if (req.files) {
-    //   for (let indice = 0; indice < req.files.images.length; indice++) {
-    //     const item = req.files.images[indice];
-    //     const result = await uploadImage(item.tempFilePath);
-    //     files.push({ url: result.secure_url, public_id: result.public_id });
-    //     // await fs.remove(item.tempFilePath);
-    //   }
-    // }
-    // fs.remove('upload')
 
     const newCard = new Card({
       titulo,

@@ -58,13 +58,13 @@ export default function ItemDetail({ error, path }) {
       <div className="w-full  flex flex-col text-xl font-bold">
         {cards != null && gradient ? (
           <section className="">
-            <Hero heroapi={cards[0]} gradient={gradient} />
+            <Hero heroapi={cards.slice(0,4)} gradient={gradient} />
             {/* <h1 className="pt-14 m-auto text-center first-letter:text-3xl">{query.categoria}</h1> */}
             <div
-              className={` pt-20 grid  items-center justify-items-center gap-7 lg:gap-5 mt-7 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 m-10`}
+              className={` pt-10 grid  items-center justify-items-center gap-7 lg:gap-5 mt-7 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 m-10`}
             >
               {cards.map((item, i) => (
-                <Item {...item} key={i} gradient={gradient} />
+                <Item {...item} product={item} key={i} gradient={gradient} />
               ))}
             </div>
           </section>

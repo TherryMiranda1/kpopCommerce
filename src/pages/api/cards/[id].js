@@ -1,24 +1,10 @@
 import dbConnect from "src/lib/mongoose";
 import Card from "src/models/Card";
 import { uploadImage } from "src/lib/cloudinary";
-import path from "path";
 
 import nextConnect from "next-connect";
-import multer from "multer";
-import fs from "fs-extra";
 
 dbConnect();
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(process.cwd(), "public", "uploads"));
-    },
-    filename: function (req, file, cb) {
-      cb(null, new Date().getTime() + "-" + file.originalname);
-    },
-  }),
-});
 
 const apiRoute = nextConnect({
   // Handle any other HTTP method
@@ -31,10 +17,6 @@ const apiRoute = nextConnect({
     res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   },
 });
-
-const uploadMiddleware = upload.array("image");
-
-apiRoute.use(uploadMiddleware);
 
 apiRoute.get(async (req, res) => {
   try {
@@ -49,21 +31,9 @@ apiRoute.get(async (req, res) => {
 });
 
 apiRoute.put(async (req, res) => {
-  console.log(req.files);
-  const { title, description } = req.body;
   const { id } = req.query;
-  let image;
-  if (req.files) {
-    const result = await uploadImage(req.files[0].path);
-    console.log(result);
-    await fs.remove(req.files[0].path);
-    image = {
-      url: result.secure_url,
-      public_id: result.public_id,
-    };
-  }
-  const body = { title, description, image };
-
+  const body = req.body
+console.log(req.query)
   const updatedCard = await Card.findByIdAndUpdate(id, body, {
     new: true,
   });
@@ -128,8 +98,3 @@ apiRoute.delete(async (req, res) => {
 
 export default apiRoute;
 
-export const config = {
-  api: {
-    bodyParser: false, // Disallow body parsing, consume as stream
-  },
-};

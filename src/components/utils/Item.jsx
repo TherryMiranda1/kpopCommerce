@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { StarIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { setAddItemToCart, setOpenCart } from "../../app/CartSlice";
+import { useStateContext } from "src/context/StateContext";
 
 const Item = ({
   ifExists,
@@ -19,25 +20,19 @@ const Item = ({
   _id,
   rating,
   price,
-  gradient
+  gradient,
+  product,
 }) => {
   //   console.log(id)
-  const dispatch = useDispatch();
   const router = useRouter();
 
-  const onAddToCart = () => {
-    const item = { id, descripcion, titulo, images, img, color, shadow, price };
+  const handleBuyNow = () => {
+    onAdd(product, qty);
 
-    dispatch(setAddItemToCart(item));
+    setShowCart(true);
   };
 
-  const onCartToggle = () => {
-    dispatch(
-      setOpenCart({
-        cartState: true,
-      })
-    );
-  };
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   return (
     <>
@@ -46,7 +41,7 @@ const Item = ({
         className={`relative  ${
           ifExists
             ? "bg-gradient-to-l from-gray-900 to-yellow-500 shadow-lg shadow-yellow-500 justify-items-start"
-            : "bg-gradient-to-l from-slate-700 to-black shadow-lg shadow-black justify-items-center "
+            : " justify-items-center "
         } ${gradient} rounded-xl m-auto py-4 px-5 transition-all grid items-center duration-700 ease-in-out w-full hover:scale-105`}
       >
         <div
@@ -57,9 +52,11 @@ const Item = ({
           <h1 className="text-slate-200 text-xl lg:text-lg md:text-base font-medium filter drop-shadow">
             {titulo}
           </h1>
-          <p className="text-slate-200 filter drop-shadow text-base md:text-sm font-normal">
-            {descripcion}
-          </p>
+          {!ifExists ? (
+            <p className="text-slate-200 filter drop-shadow text-base md:text-sm font-normal">
+              {descripcion}
+            </p>
+          ) : null}
 
           <div className="flex items-center justify-between w-28 my-2">
             <div className="flex items-center bg-white/80  px-1 rounded blur-effect-theme">
@@ -82,19 +79,22 @@ const Item = ({
             <button
               type="button"
               className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
-              onClick={() => onAddToCart()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onAdd(product, qty);
+              }}
             >
               <ShoppingBagIcon className="icon-style text-slate-900" />
             </button>
             <button
               type="button"
               className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
-              onClick={() => {
-                onAddToCart();
-                onCartToggle();
+              onClick={(e) => {
+                e.stopPropagation();
+                handleBuyNow();
               }}
             >
-              {btn || 'Comprar ahora'}
+              {btn || "Comprar ahora"}
             </button>
           </div>
         </div>
@@ -108,9 +108,7 @@ const Item = ({
               src={img}
               alt={`img/item-img/${id}`}
               className={`transitions-theme hover:-rotate-12 ${
-                ifExists
-                  ? "h-auto w-36  -rotate-[35deg]"
-                  : "h-36 w-64"
+                ifExists ? "w-auto h-36  -rotate-[35deg]" : "h-36 w-64"
               }`}
             />
           )}
@@ -119,9 +117,7 @@ const Item = ({
               src={images[0].url}
               alt={`img/item-img/${id}`}
               className={`transitions-theme hover:-rotate-12 ${
-                ifExists
-                  ? "h-auto w-64  -rotate-[35deg]"
-                  : "h-46"
+                ifExists ? "h-auto w-36  -rotate-[35deg]" : "h-46"
               }`}
             />
           ) : null}

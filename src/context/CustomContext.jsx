@@ -8,7 +8,6 @@ export const useCustom = () => {
   return context;
 };
 
-const colors = ["#E60516"];
 
 export const CustomContainer = ({ children }) => {
   const [path, setPath] = useState("");

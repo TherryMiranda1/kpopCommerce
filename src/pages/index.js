@@ -20,39 +20,60 @@ import Head from "next/head";
 import { useCustom } from "src/context/CustomContext";
 
 export default function HomePage({ cards, users, session, path }) {
-  const [ready, setReady] = useState(false);
   // if (cards.length === 0) return <NoContentComponent />;
-  const { setPath } = useCustom();
+  const [tops, setTops] = useState({
+    banner: cards?.slice(0, 5),
+    valueds: cards?.slice(0, 3),
+  });
 
-  const web = 0;
-  console.log(path);
+  const handleCalcTops = () => {
+    const bannerFilter = cards?.sort(function () {
+      return Math.random() - 0.5;
+    });
+    const topsFilter = cards?.filter(function (rcp) {
+      return rcp.rating >= 4.5;
+    });
+    setTops({
+      banner: bannerFilter.slice(0, 5),
+      valueds: topsFilter.slice(0, 3),
+    });
+  };
 
+  console.log(tops)
   useEffect(() => {
+    handleCalcTops()
     AOS.init();
   }, []);
 
   return (
-    <article className="w-full">
+    <article >
       <Head>
-        <title>Sport Commerce</title>
-        <meta name="viewport" content="width=device-width" initial-scale="1" />
+        <title>The Quest</title>
       </Head>
-      <div className="w-full text-md">
-        <section>
-          <main className="flex flex-col gap-16 overflow-hidden">
+      <div className="text-md">
+        <section >
+          <main className="flex flex-col gap-16 flex-1 max-w-full mb-6">
             <Hero
-              heroapi={heroapi}
+              heroapi={tops.banner}
+              sociallinks={heroapi.sociallinks}
+              multiple
               gradient={"bg-gradient-to-l from-gray-900 to-yellow-500"}
-              gradient2={"bg-gradient-to-l from-green-500 to-emerald-600 shadow-lg shadow-green-500"}
-              gradient3={"bg-gradient-to-l from-blue-900 to-blue-500 shadow-lg shadow-blue-500"}
-              gradient4={"bg-gradient-to-l from-red-400 to-rose-600 shadow-lg shadow-rose-500"}
+              gradient2={
+                "bg-gradient-to-l from-green-500 to-emerald-600 shadow-lg shadow-green-500"
+              }
+              gradient3={
+                "bg-gradient-to-l from-blue-900 to-blue-500 shadow-lg shadow-blue-500"
+              }
+              gradient4={
+                "bg-gradient-to-l from-red-400 to-rose-600 shadow-lg shadow-rose-500"
+              }
             />
-            <Sales endpoint={popularsales.items} ifExists />
+            <Sales endpoint={tops.valueds} ifExists gradient={"bg-gradient-to-br from-gray-900 to-yellow-500"} />
             <Categories endpoint={categories.items} />
-            <FlexContent endpoint={highlight} ifExists />
-            <Sales endpoint={topratesales.items} />
-            <Sales endpoint={cards} />
-            <FlexContent endpoint={sneaker} />
+            <FlexContent endpoint={highlight[0]} ifExists  />
+            {/* <Sales endpoint={topratesales.items} /> */}
+            <Sales endpoint={cards} gradient={"bg-gradient-to-br from-sky-900 to-indigo-500 shadow-lg shadow-blue-500"} />
+            <FlexContent endpoint={highlight[1]} />
             <Stories story={story} />
           </main>
         </section>

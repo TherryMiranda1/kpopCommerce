@@ -7,21 +7,15 @@ import {
   MagnifyingGlassIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
+import { AiOutlineShopping } from "react-icons/ai";
 import { useRouter } from "next/router.js";
+import { useStateContext } from "src/context/StateContext.js";
+import { Cart } from "./index.js";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
-  const dispatch = useDispatch();
-  const {push}= useRouter()
-  const totalQTY = useSelector(selectTotalQTY);
-
-  const onCartToggle = () => {
-    dispatch(
-      setOpenCart({
-        cartState: true,
-      })
-    );
-  };
+  const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const { push } = useRouter();
 
   const onNavScroll = () => {
     if (window.scrollY > 300) {
@@ -42,17 +36,17 @@ const Navbar = () => {
       <header
         className={
           !navState
-            ? "absolute left-0 h-[6vh] justify-center flex right-0 opacity-50 z-50 bg-black"
-            : "fixed top-0 left-0 right-0 h-[6vh] flex items-center  justify-center opacity-100 z-[200] blur-effect-theme"
+            ? "fixed left-0 h-[6vh] justify-center flex right-0 opacity-100 z-30 bg-gray-800"
+            : "fixed top-0 left-0 right-0 h-[6vh] flex items-center  justify-center opacity-100 z-30 blur-effect-theme"
         }
       >
         <nav className="flex items-center justify-between nike-container">
           <div className="flex items-center">
             <img
-            onClick={()=>push('/')}
-              src='/logo.png'
+              onClick={() => push("/")}
+              src="https://res.cloudinary.com/dzkcloud/image/upload/v1668452577/theQuest/assets/9e89098b3d01981392542b86977825cc-removebg-preview_asp4nh.png"
               alt="logo/img"
-              className={`w-16 h-auto cursor-pointer hover:w-20 ${navState && "filter brightness-0"}`}
+              className={`w-14 h-auto cursor-pointer hover:w-16 l`}
             />
           </div>
           <ul className="flex items-center justify-center gap-2">
@@ -70,29 +64,20 @@ const Navbar = () => {
                 }`}
               />
             </li>
-            <li className="grid items-center">
+            <li className="mx-5 items-center font-bold">
               <button
                 type="button"
-                onClick={onCartToggle}
-                className="border-none outline-none active:scale-110 transition-all duration-300 relative"
+                className={`icon-style ${
+                  navState && "text-slate-900 transition-all duration-300"
+                }`}
+                onClick={() => setShowCart(!showCart)}
               >
-                <ShoppingBagIcon
-                  className={`icon-style ${
-                    navState && "text-slate-900 transition-all duration-300"
-                  }`}
-                />
-                <div
-                  className={`absolute top-4 right-0 shadow w-4 h-4 text-[0.65rem] leading-tight font-medium rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 ${
-                    navState
-                      ? "bg-slate-900 text-slate-100 shadow-slate-900"
-                      : "bg-slate-100 text-slate-900 shadow-slate-100"
-                  }`}
-                >
-                  {totalQTY}
-                </div>
+                <ShoppingBagIcon />
+                <span className="cart-item-qty">{totalQuantities}</span>
               </button>
             </li>
           </ul>
+          {showCart && <Cart />}
         </nav>
       </header>
     </>

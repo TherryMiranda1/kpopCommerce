@@ -140,14 +140,26 @@ const popularsales = {
   ],
 };
 
-const highlight = {
-  heading: "HIGHLIGHTS",
-  title: "NIKE AIR WITH LIMITLESS CHOICES",
-  text: "Our Purpose is to move the world forward. We take action by building community, protecting our planet and increasing access to sport.",
-  btn: "Explore More",
-  url: "https://www.nike.com/launch/t/nocta-hot-step-black-gold",
-  img: hightlightimg,
-};
+const highlight = [
+  {
+    id: 1,
+    heading: "Nos movemos contigo",
+    title: "En estas navidades",
+    text: "Todo pedido superior a 30€ Te viene con envio gratuito incluido. Aprovechalo.!",
+    btn: "Explorar Tienda",
+    url: "",
+    img: "https://res.cloudinary.com/dzkcloud/image/upload/v1668369171/theQuest/zfrcnszeqka17xcxavzk.png",
+  },
+  {
+    id: 1,
+    heading: "Somos Fanaticos del Kpop",
+    title: "Tambien nos encanta la cultura coreana",
+    text: "Por eso acctualizamos constantemente nuestro stock con los mejores productos de tus idols favoritos",
+    btn: "Explorar Tienda",
+    url: "g",
+    img: "https://res.cloudinary.com/dzkcloud/image/upload/v1668457062/theQuest/photo_2022-11-13_10-26-18-removebg-preview_r6ukug.png",
+  },
+];
 
 const sneaker = {
   heading: "FEATURED",
