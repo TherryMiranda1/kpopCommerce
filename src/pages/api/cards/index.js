@@ -1,25 +1,9 @@
 import dbConnect from "src/lib/mongoose";
 import Card from "src/models/Card";
-//import { uploadImage } from "src/lib/cloudinary";
-//import path from "path";
-//import fs from "fs-extra";
 
 import nextConnect from "next-connect";
-//import multer from "multer";
-//import fileUpload from "express-fileupload";
 
 dbConnect();
-
-// const upload = multer({
-//   storage: multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, path.join(process.cwd(), "public", "tmp", "uploads"));
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, new Date().getTime() + "-" + file.originalname);
-//     },
-//   }),
-// });
 
 const apiRoute = nextConnect({
   // Handle any other HTTP method
@@ -33,16 +17,6 @@ const apiRoute = nextConnect({
   },
 });
 
-// const uploadMiddleware = upload.array("images");
-
-// apiRoute.use(uploadMiddleware);
-
-// apiRoute.use(
-//   fileUpload({
-//     useTempFiles: true,
-//     tempFileDir: "./public/uploads",
-//   })
-// );
 
 apiRoute.get(async (req, res) => {
   try {
@@ -84,8 +58,4 @@ apiRoute.post(async (req, res) => {
 
 export default apiRoute;
 
-// export const config = {
-//   api: {
-//     bodyParser: false, // Disallow body parsing, consume as stream
-//   },
-// };
+

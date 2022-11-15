@@ -26,7 +26,6 @@ export const getServerSideProps = async (context) => {
 
   const session = await getSession(context);
   const path = apiUrl(context);
-  console.log(path);
   return {
     props: {
       cards,

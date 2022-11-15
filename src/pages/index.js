@@ -39,7 +39,6 @@ export default function HomePage({ cards, users, session, path }) {
     });
   };
 
-  console.log(tops)
   useEffect(() => {
     handleCalcTops()
     AOS.init();

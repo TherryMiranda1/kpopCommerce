@@ -17,7 +17,7 @@ const formValues = {
   blur: true,
   placeholders: [
     { id: 1, title: "Titulo", name: "titulo", type: "text", required: true },
-   
+
     {
       id: 4,
       title: "Precio",
@@ -39,13 +39,13 @@ const formValues = {
       name: "existencia",
       type: "text",
       required: false,
-    }
+    },
   ],
 };
 
 const MAX_COUNT = 5;
 
-function newItem({ cards, card, session, path }) {
+function newItem({ cards, path }) {
   const { push, query } = useRouter();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
@@ -53,7 +53,10 @@ function newItem({ cards, card, session, path }) {
   const [newCard, setNewCard] = useState({
     titulo: "",
     description: "",
-    type: "",
+    tipo: "",
+    precio: "",
+    existencia: "",
+    rating: "",
     files: [],
   });
   const [errors, setErrors] = useState({});
@@ -127,19 +130,36 @@ function newItem({ cards, card, session, path }) {
   const updateCard = async () => {
     try {
       const body = new FormData();
-      for (let key in newCard) {
-        body.append(key, newCard[key]);
+      body.append("upload_preset", "theQuest");
+      let images = [];
+      if (newCard?.files) {
+        for (let i = 0; i < newCard.files.length; i++) {
+          const item = newCard.files[i];
+          body.append("file", item);
+          const providerRes = await fetch(
+            `https://api.cloudinary.com/v1_1/dzkcloud/image/upload`,
+            {
+              method: "POST",
+              body,
+            }
+          );
+          const card = await providerRes.json();
+          images.push({ url: card.secure_url });
+        }
       }
-      for (let i = 0; i < newCard.files.length; i++) {
-        const item = newCard.files[i];
-        body.append("images", item);
-      }
-      const res = await fetch(`${path}/cards/${query.id}`, {
-        method: "PUT",
-        headers: {},
-        body,
-      });
-      const card = await res.json();
+      const savedCard = { ...newCard, ["files"]: images };
+      console.log(savedCard);
+      const serverRes = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/cards/${query.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(savedCard),
+        }
+      );
+      const card = await serverRes.json();
     } catch (error) {
       console.log(error);
     }
@@ -166,15 +186,16 @@ function newItem({ cards, card, session, path }) {
     setNewCard({ ...newCard, [e.target.name]: e.target.value });
 
   const getCard = async () => {
-    const res = await fetch(`${path}/cards/${query.id}`);
-    console.log(path);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/cards/${query.id}`
+    );
+
     if (res.status === 200) {
       const card = await res.json();
       setNewCard(card);
     }
   };
   useEffect(() => {
-    console.log(path);
     if (query.id) {
       getCard();
     }
@@ -260,12 +281,13 @@ function newItem({ cards, card, session, path }) {
         </form>
       </article>
       <section>
-      <button onClick={() => push('/admin/items')}
-                className="bg-sky-500 hover:bg-sky-700 m-2 p-1 px-2 rounded-md text-white"
-                style={{ boxShadow: "1px 2px 3px gray" }}
-              >
-                Ver Items
-              </button>
+        <button
+          onClick={() => push("/admin/items")}
+          className="bg-sky-500 hover:bg-sky-700 m-2 p-1 px-2 rounded-md text-white"
+          style={{ boxShadow: "1px 2px 3px gray" }}
+        >
+          Ver Items
+        </button>
       </section>
     </div>
   );
@@ -279,7 +301,7 @@ export const getServerSideProps = async (context) => {
   const cards = await res.json();
 
   const session = await getSession(context);
-  
+
   return {
     props: {
       cards,

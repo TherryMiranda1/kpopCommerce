@@ -15,7 +15,7 @@ export const StateContext = ({ children }) => {
 
   const onAdd = (product, quantity) => {
     const checkProductInCart = cartItems.find(
-      (item) => item._id === product._id
+      (item) => item?._id === product?._id
     );
 
     setTotalPrice(
@@ -25,11 +25,13 @@ export const StateContext = ({ children }) => {
 
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
-        if (cartProduct._id === product._id)
+        if (cartProduct?._id === product?._id){console.log(cartProduct?.rating)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
-          };
+          };}
+        
+          else {return cartProduct}
       });
 
       setCartItems(updatedCartItems);
@@ -39,7 +41,7 @@ export const StateContext = ({ children }) => {
       setCartItems([...cartItems, { ...product }]);
     }
     toast((t) => (
-      <span className="flex gap-3 font-bold items-center shadow-2xl shadow-gray-800">
+      <span className="flex bg-white gap-3 font-bold items-center ">
         <img
           alt="image"
           src={product.images[0].url}

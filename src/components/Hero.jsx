@@ -10,7 +10,6 @@ const Hero = ({ heroapi, sociallinks, gradient }) => {
 
     setShowCart(true);
   };
-  console.log(heroapi);
   return (
     <div className="top_slider-container">
       <div
@@ -18,9 +17,9 @@ const Hero = ({ heroapi, sociallinks, gradient }) => {
       ></div>
       <section className="top-slider">
         {heroapi.map((item, i) => (
-          <article className="top-slider_slide">
+          <article className="top-slider_slide" key={i}>
             <div
-              key={i}
+              
               className="  opacity-100  grid items-center justify-items-center nike-container"
             >
               <div className=" grid items-center justify-items-center pt-14">

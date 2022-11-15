@@ -6,14 +6,11 @@ import apiUrl from "next-api-url";
 
 import {
   AiOutlineShoppingCart,
-  AiOutlineMail,
   AiOutlineHeart,
 } from "react-icons/ai";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
-  AiFillStar,
-  AiOutlineStar,
 } from "react-icons/ai";
 import Head from "next/head";
 import { useStateContext } from "src/context/StateContext";

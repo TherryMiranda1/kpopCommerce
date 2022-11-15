@@ -19,7 +19,6 @@ const Item = ({
   btn,
   _id,
   rating,
-  price,
   gradient,
   product,
 }) => {
@@ -27,7 +26,7 @@ const Item = ({
   const router = useRouter();
 
   const handleBuyNow = () => {
-    onAdd(product, qty);
+    onAdd(product, 1);
 
     setShowCart(true);
   };
@@ -81,7 +80,7 @@ const Item = ({
               className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
               onClick={(e) => {
                 e.stopPropagation();
-                onAdd(product, qty);
+                onAdd(product, 1);
               }}
             >
               <ShoppingBagIcon className="icon-style text-slate-900" />
