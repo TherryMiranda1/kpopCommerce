@@ -406,7 +406,7 @@ const story = {
 
 const footerAPI = {
   titles: [
-    { title: "About Nike" },
+    { title: "About Thequest" },
     { title: "Get Help" },
     { title: "Company" },
   ],
@@ -432,7 +432,6 @@ const footerAPI = {
       { link: "Promotions" },
       { link: "Find A Store" },
       { link: "Signup" },
-      { link: "Nike Jouneral" },
       { link: "Send Us Feeback" },
     ],
   ],
