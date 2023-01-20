@@ -73,7 +73,7 @@ export default function HomePage({ cards, users, session, path }) {
             {/* <Sales endpoint={topratesales.items} /> */}
             <Sales endpoint={cards} gradient={"bg-gradient-to-br from-sky-900 to-indigo-500 shadow-lg shadow-blue-500"} />
             <FlexContent endpoint={highlight[1]} />
-            <Stories story={story} />
+            {/* <Stories story={story} /> */}
           </main>
         </section>
       </div>

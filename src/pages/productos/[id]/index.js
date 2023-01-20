@@ -64,7 +64,7 @@ export default function ItemDetail({ error, path }) {
         <section className="m-3 p-3 rounded-xl cursor-pointer place-content-center ">
           <article className="flex place-content-center flex-1 ">
             {product?.images[0] && (
-              <section className="place-content-center shadow-xl shadow-gray-400 p-16 rounded-3xl flex flex-col gap-5">
+              <section className="place-content-center shadow-md shadow-gray-400 p-16  flex flex-col gap-5">
                 <img
                   alt="image"
                   className="rounded-xl lg:w-[35vw] md:w-[50vw] w-auto h-[50vh] object-contain m-auto"

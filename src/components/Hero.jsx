@@ -22,7 +22,7 @@ const Hero = ({ heroapi, sociallinks, gradient }) => {
               
               className="  opacity-100  grid items-center justify-items-center nike-container"
             >
-              <div className=" grid items-center justify-items-center pt-14">
+              <div className=" grid items-center justify-items-center pt-24">
                 <h1 className=" lg:text-5xl md:text-4xl text-3xl  font-extrabold filter drop-shadow-sm text-slate-200">
                   {item?.titulo}
                 </h1>
